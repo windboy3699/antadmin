@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from 'antd';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-import '../cover.css';
+import '../test.less';
 
 const { SubMenu } = Menu;
 
@@ -22,7 +22,7 @@ class Header extends Component {
         return (
             <div className="header-wrap">
                 <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-                    <Menu.Item key="mail" icon={<MailOutlined />} className="xxxdddyy">
+                    <Menu.Item key="mail" icon={<MailOutlined />} className="test1">
                     Navigation One
                     </Menu.Item>
                     <Menu.Item key="appstore" icon={<AppstoreOutlined />}>
