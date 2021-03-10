@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import './App.css';
@@ -12,6 +11,7 @@ import {
     TeamOutlined,
     UserOutlined,
 } from '@ant-design/icons';
+import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
 import List from './components/List';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -20,6 +20,7 @@ const { SubMenu } = Menu;
 class App extends React.Component {
     state = {
         collapsed: false,
+        current: 'mail',
     };
 
     onCollapse = collapsed => {
@@ -27,12 +28,18 @@ class App extends React.Component {
         this.setState({ collapsed });
     };
 
+    handleClick = e => {
+        console.log('click ', e);
+        this.setState({ current: e.key });
+    };
+
     render() {
         const { collapsed } = this.state;
+        const { current } = this.state;
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
-                    <div className="logo" />
+                    <div className="logo">AntAdmin</div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
                         <Menu.Item key="1" icon={<PieChartOutlined />}>
                             Option 1
@@ -55,7 +62,21 @@ class App extends React.Component {
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
-                    <Header className="site-layout-background" style={{ padding: 0 }} />
+                    <Header className="site-layout-background" style={{ padding: 0 }}>
+                        <div className="header-wrap">
+                            <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
+                                <Menu.Item key="mail" icon={<MailOutlined />}>
+                                    Navigation One
+                                </Menu.Item>
+                                <Menu.Item key="appstore" icon={<AppstoreOutlined />}>
+                                    Navigation Two
+                                </Menu.Item>
+                                <Menu.Item key="setting" icon={<SettingOutlined />}>
+                                    Navigation Three
+                                </Menu.Item>
+                            </Menu>
+                        </div>
+                    </Header>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '16px 0' }}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
