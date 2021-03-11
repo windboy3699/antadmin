@@ -12,6 +12,7 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
+import { Avatar } from 'antd';
 import List from './components/List';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -75,10 +76,14 @@ class App extends React.Component {
                                     Navigation Three
                                 </Menu.Item>
                             </Menu>
+                            <div className={"header-right"}>
+                                您好，PanXd [退出]&nbsp;&nbsp;
+                                <Avatar size={40} icon={<UserOutlined />} />
+                            </div>
                         </div>
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
-                        <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb style={{ margin: '10px 0' }}>
                             <Breadcrumb.Item>User</Breadcrumb.Item>
                             <Breadcrumb.Item>Bill</Breadcrumb.Item>
                         </Breadcrumb>
