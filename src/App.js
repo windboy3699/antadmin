@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import './index.css';
 import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import { Layout, Menu, Breadcrumb } from 'antd';
+import {Layout, Menu, Breadcrumb, Col, Form, Input, Row} from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
@@ -84,8 +84,15 @@ class App extends React.Component {
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
                         <Breadcrumb style={{ margin: '10px 0' }}>
-                            <Breadcrumb.Item>User</Breadcrumb.Item>
-                            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                            <Row gutter={16}>
+                                <Col className="gutter-row" span={12}>
+                                    <Breadcrumb.Item>User</Breadcrumb.Item>
+                                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                                </Col>
+                                <Col className="gutter-row" span={12} style={{textAlign: "right", color: "#1890ff"}}>
+                                    > Add &nbsp;&nbsp; > Update
+                                </Col>
+                            </Row>
                         </Breadcrumb>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                             <BrowserRouter>

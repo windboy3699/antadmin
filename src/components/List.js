@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { Table, Tag, Space } from 'antd';
-import { Row, Col, Divider } from 'antd';
+import { Row, Col } from 'antd';
 import { Input } from 'antd';
-import { Button, Tooltip } from 'antd';
+import { Button, Form, Cascader } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-
-const style = {  marginBottom:"10px" };
 
 const columns = [
     {
@@ -176,21 +174,36 @@ class List extends Component {
         return (
             <div className="list-wrap">
                 <Row gutter={16}>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}><Input placeholder="Basic usage" /></div>
+                    <Col className="gutter-row" span={5}>
+                        <Form.Item label="Input">
+                            <Input />
+                        </Form.Item>
                     </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}><Input placeholder="Basic usage" /></div>
+                    <Col className="gutter-row" span={5}>
+                        <Form.Item label="Input">
+                            <Input />
+                        </Form.Item>
                     </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}><Input placeholder="Basic usage" /></div>
+                    <Col className="gutter-row" span={5}>
+                        <Form.Item label="Cascader">
+                            <Cascader
+                                options={[
+                                    {
+                                        value: 'zhejiang',
+                                        label: 'Zhejiang',
+                                        children: [
+                                            {
+                                                value: 'hangzhou',
+                                                label: 'Hangzhou',
+                                            },
+                                        ],
+                                    },
+                                ]}
+                            />
+                        </Form.Item>
                     </Col>
-                    <Col className="gutter-row" span={6}>
-                        <div style={style}>
-                            <Button type="primary" icon={<SearchOutlined />}>
-                            Search
-                            </Button>
-                        </div>
+                    <Col className="gutter-row" span={3}>
+                        <Button type="primary" icon={<SearchOutlined />} style={{marginTop:"32px"}}>Search</Button>
                     </Col>
                 </Row>
                 <Table columns={columns} dataSource={data} bordered={true} size="small" scroll={{ x: 'calc(500px + 50%)', y: 300 }} />
