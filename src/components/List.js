@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Tag, Space } from 'antd';
-import { Row, Col } from 'antd';
-import { Input } from 'antd';
-import { Button, Form, Cascader } from 'antd';
+import { Table, Tag, Space, Row, Col, Input, Button, Form, Cascader } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 
 const columns = [

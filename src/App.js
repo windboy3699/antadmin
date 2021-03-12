@@ -3,16 +3,17 @@ import 'antd/dist/antd.css';
 import './index.css';
 import './App.css';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import {Layout, Menu, Breadcrumb, Col, Form, Input, Row} from 'antd';
+import {Avatar, Layout, Menu, Breadcrumb, Col, Row} from 'antd';
 import {
     DesktopOutlined,
     PieChartOutlined,
     FileOutlined,
     TeamOutlined,
     UserOutlined,
+    MailOutlined,
+    AppstoreOutlined,
+    SettingOutlined,
 } from '@ant-design/icons';
-import { MailOutlined, AppstoreOutlined, SettingOutlined } from '@ant-design/icons';
-import { Avatar } from 'antd';
 import List from './components/List';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -97,8 +98,8 @@ class App extends React.Component {
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                             <BrowserRouter>
                                 <Switch>
-                                    <Redirect exact from="/" to="/home/all" />
-                                    <Route path='/home/:tab' component={List}></Route>
+                                    <Redirect exact from="/" to="/home" />
+                                    <Route path='/home' component={List}></Route>
                                 </Switch>
                                 {this.props.children}
                             </BrowserRouter>
