@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 import {Avatar, Layout, Menu, Breadcrumb, Col, Row} from 'antd';
 import {
     DesktopOutlined,
@@ -66,7 +66,7 @@ class Home extends React.Component {
                         <div className="header-wrap">
                             <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
                                 <Menu.Item key="mail" icon={<MailOutlined />}>
-                                    Navigation One
+                                    <Link to="/login">Navigation One</Link>
                                 </Menu.Item>
                                 <Menu.Item key="appstore" icon={<AppstoreOutlined />}>
                                     Navigation Two
@@ -89,7 +89,7 @@ class Home extends React.Component {
                                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                                 </Col>
                                 <Col className="gutter-row" span={12} style={{textAlign: "right", color: "#1890ff"}}>
-                                    > Add &nbsp;&nbsp; > Update
+
                                 </Col>
                             </Row>
                         </Breadcrumb>
