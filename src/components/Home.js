@@ -95,14 +95,12 @@ class Home extends React.Component {
                             </Col>
                         </Row>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
-                            <BrowserRouter>
-                                <Switch>
-                                    <Route exact path='/list' component={List}></Route>
-                                    <Route path='/edit' component={Edit}></Route>
-                                    <Route path='/' component={NotFound}></Route>
-                                </Switch>
-                                {this.props.children}
-                            </BrowserRouter>
+                            <Switch>
+                                <Route path='/list' component={List}></Route>
+                                <Route path='/edit' component={Edit}></Route>
+                                <Route path='/' component={NotFound}></Route>
+                            </Switch>
+                            {this.props.children}
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
