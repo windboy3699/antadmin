@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 import NotFound from "./NotFound";
 import List from './List';
+import Edit from "./Edit";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -69,10 +70,10 @@ class Home extends React.Component {
                                     <Link to="/login">Navigation One</Link>
                                 </Menu.Item>
                                 <Menu.Item key="appstore" icon={<AppstoreOutlined />}>
-                                    Navigation Two
+                                    <Link to="/list">Navigation Two</Link>
                                 </Menu.Item>
                                 <Menu.Item key="setting" icon={<SettingOutlined />}>
-                                    Navigation Three
+                                    <Link to="/edit">Navigation Three</Link>
                                 </Menu.Item>
                             </Menu>
                             <div className={"header-right"}>
@@ -82,21 +83,22 @@ class Home extends React.Component {
                         </div>
                     </Header>
                     <Content style={{ margin: '0 16px' }}>
-                        <Breadcrumb style={{ margin: '10px 0' }}>
-                            <Row gutter={16}>
-                                <Col className="gutter-row" span={12}>
-                                    <Breadcrumb.Item>User</Breadcrumb.Item>
-                                    <Breadcrumb.Item>Bill</Breadcrumb.Item>
-                                </Col>
-                                <Col className="gutter-row" span={12} style={{textAlign: "right", color: "#1890ff"}}>
+                        <Row gutter={16}>
+                            <Col className="gutter-row" span={12} style={{ margin: '10px 0' }}>
+                                <Breadcrumb>
+                                <Breadcrumb.Item>User</Breadcrumb.Item>
+                                <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                                </Breadcrumb>
+                            </Col>
+                            <Col className="gutter-row" span={12} style={{textAlign: "right", color: "#1890ff"}}>
 
-                                </Col>
-                            </Row>
-                        </Breadcrumb>
+                            </Col>
+                        </Row>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
                             <BrowserRouter>
                                 <Switch>
-                                    <Route exact path='/' component={List}></Route>
+                                    <Route exact path='/list' component={List}></Route>
+                                    <Route path='/edit' component={Edit}></Route>
                                     <Route path='/' component={NotFound}></Route>
                                 </Switch>
                                 {this.props.children}

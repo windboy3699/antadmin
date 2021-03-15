@@ -7,13 +7,13 @@ const layout = {
         span: 8,
     },
     wrapperCol: {
-        span: 16,
+        span: 8,
     },
 };
 const tailLayout = {
     wrapperCol: {
         offset: 8,
-        span: 16,
+        span: 8,
     },
 };
 
@@ -36,6 +36,7 @@ class Login extends Component {
                 }}
                 onFinish={onFinish}
                 onFinishFailed={onFinishFailed}
+                style={{paddingTop:"160px"}}
             >
                 <Form.Item
                     label="Username"
