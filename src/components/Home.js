@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import {Avatar, Layout, Menu, Breadcrumb, Col, Row} from 'antd';
 import {
     DesktopOutlined,
@@ -21,7 +21,6 @@ const { SubMenu } = Menu;
 class Home extends React.Component {
     state = {
         collapsed: false,
-        current: 'mail',
     };
 
     onCollapse = collapsed => {
@@ -36,7 +35,6 @@ class Home extends React.Component {
 
     render() {
         const { collapsed } = this.state;
-        const { current } = this.state;
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
@@ -65,14 +63,14 @@ class Home extends React.Component {
                 <Layout className="site-layout">
                     <Header className="site-layout-background" style={{ padding: 0 }}>
                         <div className="header-wrap">
-                            <Menu onClick={this.handleClick} selectedKeys={[current]} mode="horizontal">
-                                <Menu.Item key="mail" icon={<MailOutlined />}>
+                            <Menu onClick={this.handleClick} selectedKeys={[this.props.history.location.pathname]} mode="horizontal">
+                                <Menu.Item key="/login" icon={<MailOutlined />}>
                                     <Link to="/login">Navigation One</Link>
                                 </Menu.Item>
-                                <Menu.Item key="appstore" icon={<AppstoreOutlined />}>
+                                <Menu.Item key="/list" icon={<AppstoreOutlined />}>
                                     <Link to="/list">Navigation Two</Link>
                                 </Menu.Item>
-                                <Menu.Item key="setting" icon={<SettingOutlined />}>
+                                <Menu.Item key="/edit" icon={<SettingOutlined />}>
                                     <Link to="/edit">Navigation Three</Link>
                                 </Menu.Item>
                             </Menu>
