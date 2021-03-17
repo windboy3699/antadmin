@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Tag, Space, Row, Col, Input, Button, Form, Cascader } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
+import { getTestData } from "../services/apis";
 
 const columns = [
     {
@@ -65,108 +66,26 @@ const data = [
         age: 42,
         address: 'London No. 1 Lake Park',
         tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '2',
-        name: 'Jim Green',
-        age: 42,
-        address: 'London No. 1 Lake Park',
-        tags: ['loser'],
-    },
-    {
-        key: '3',
-        name: 'Joe Black',
-        age: 32,
-        address: 'Sidney No. 1 Lake Park',
-        tags: ['cool', 'teacher'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
-    {
-        key: '1',
-        name: 'John Brown',
-        age: 32,
-        address: 'New York No. 1 Lake Park',
-        tags: ['nice', 'developer'],
-    },
+    }
 ];
 
 class List extends Component {
+    state = {
+        list: [],
+    };
+
+    componentWillMount() {
+        const params = {
+            page: 1,
+        }
+        getTestData(params).then(response => {
+            console.log(response);
+            this.setState({
+                list:response.data.data
+            })
+        })
+    }
+
     render() {
         return (
             <div className="list-wrap">
@@ -206,7 +125,7 @@ class List extends Component {
                         <Button type="primary" icon={<SearchOutlined />} style={{marginTop:"32px"}}>Search</Button>
                     </Col>
                 </Row>
-                <Table columns={columns} dataSource={data} bordered={true} size="small" scroll={{ x: 'calc(500px + 50%)', y: 300 }} />
+                <Table columns={columns} dataSource={this.state.list} bordered={true} size="small" scroll={{ x: 'calc(500px + 50%)', y: 300 }} />
             </div>
         )
     }
