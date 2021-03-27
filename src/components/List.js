@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Tag, Space, Row, Col, Input, Button, Form, Cascader } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
-import { getTestData } from "../services/apis";
+import axios from "axios";
+import { TEST_URL } from '../config/apis';
 
 const columns = [
     {
@@ -75,10 +76,12 @@ class List extends Component {
     };
 
     componentWillMount() {
-        const params = {
+        const querys = {
             page: 1,
         }
-        getTestData(params).then(response => {
+        axios.get(TEST_URL, {
+            params: querys
+        }).then(response => {
             console.log(response);
             this.setState({
                 list:response.data.data

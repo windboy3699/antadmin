@@ -14,6 +14,8 @@ import {
 import NotFound from "./NotFound";
 import List from './List';
 import Edit from "./Edit";
+import axios from "axios";
+import { ME_URL } from '../config/apis';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -21,11 +23,32 @@ const { SubMenu } = Menu;
 class Home extends React.Component {
     state = {
         collapsed: false,
+        currentUser: '',
     };
 
     onCollapse = collapsed => {
         console.log(collapsed);
         this.setState({ collapsed });
+    };
+
+    componentWillMount() {
+        const token = localStorage.getItem('token');
+        if (token == null || token.length == 0) {
+            this.props.history.push('/login');
+        }
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token ;
+        axios.get(ME_URL).then(response => {
+            if (response.data.code === 0) {
+                this.setState({ currentUser: response.data.data.systemUsername });
+            } else {
+                this.props.history.push('/login');
+            }
+        })
+    }
+
+    handleLogout = (event) => {
+        localStorage.removeItem('token');
+        this.props.history.push('/login');
     };
 
     handleClick = e => {
@@ -75,7 +98,7 @@ class Home extends React.Component {
                                 </Menu.Item>
                             </Menu>
                             <div className={"header-right"}>
-                                您好，PanXd [退出]&nbsp;&nbsp;
+                                您好，<span>{this.state.currentUser}</span> <span onClick={this.handleLogout}>[退出]</span>&nbsp;&nbsp;
                                 <Avatar size={40} icon={<UserOutlined />} />
                             </div>
                         </div>
