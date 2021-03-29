@@ -15,7 +15,7 @@ import NotFound from "./NotFound";
 import List from './List';
 import Edit from "./Edit";
 import axios from "axios";
-import { AUTH_URL } from '../config/apis';
+import { CHECK_LOGIN_URL } from '../config/apis';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -37,9 +37,9 @@ class Home extends React.Component {
             this.props.history.push('/login');
         }
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token ;
-        axios.get(AUTH_URL).then(response => {
+        axios.get(CHECK_LOGIN_URL).then(response => {
             if (response.data.code === 0) {
-                this.setState({ currentUser: response.data.data.systemUsername });
+                this.setState({ currentUser: response.data.data.username });
             } else {
                 this.props.history.push('/login');
             }
@@ -88,7 +88,7 @@ class Home extends React.Component {
                 <Layout className="site-layout">
                     <Header className="site-layout-background" style={{ padding: 0 }}>
                         <div className="header-wrap">
-                            <Menu onClick={this.handleClick} selectedKeys={[this.props.history.location.pathname]} mode="horizontal">
+                            {/*<Menu onClick={this.handleClick} selectedKeys={[this.props.history.location.pathname]} mode="horizontal">
                                 <Menu.Item key="/login" icon={<MailOutlined />}>
                                     <Link to="/login">Navigation One</Link>
                                 </Menu.Item>
@@ -98,7 +98,7 @@ class Home extends React.Component {
                                 <Menu.Item key="/edit" icon={<SettingOutlined />}>
                                     <Link to="/edit">Navigation Three</Link>
                                 </Menu.Item>
-                            </Menu>
+                            </Menu>*/}
                             <div className={"header-right"}>
                                 您好，<span>{this.state.currentUser}</span> <span onClick={this.handleLogout}>[退出]</span>&nbsp;&nbsp;
                                 <Avatar size={40} icon={<UserOutlined />} />
