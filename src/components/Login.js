@@ -66,6 +66,8 @@ class Login extends Component {
                 delete axios.defaults.headers.common['Authorization'];
                 alert(response.data.message);
             }
+        }).catch(function (error) {
+            console.log(error);
         })
     };
 

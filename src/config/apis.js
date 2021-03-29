@@ -1,9 +1,9 @@
-const BASE_URL = 'http://localhost/test';
+const BASE_URL = "http://localhost:8080";
 
-const TEST_URL = `${BASE_URL}/test.php`;
+const LOGIN_URL = `${BASE_URL}/admin/dologin`;
 
-const LOGIN_URL = 'http://localhost:8080/admin/dologin';
+const AUTH_URL = `${BASE_URL}/admin/me`;
 
-const ME_URL = 'http://localhost:8080/admin/me';
+const TEST_URL = "http://localhost/test/test.php";
 
-export { TEST_URL, LOGIN_URL, ME_URL };
+export { LOGIN_URL, AUTH_URL, TEST_URL };

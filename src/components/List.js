@@ -86,6 +86,8 @@ class List extends Component {
             this.setState({
                 list:response.data.data
             })
+        }).catch(function (error) {
+            console.log(error);
         })
     }
 

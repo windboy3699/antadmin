@@ -15,7 +15,7 @@ import NotFound from "./NotFound";
 import List from './List';
 import Edit from "./Edit";
 import axios from "axios";
-import { ME_URL } from '../config/apis';
+import { AUTH_URL } from '../config/apis';
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -37,12 +37,14 @@ class Home extends React.Component {
             this.props.history.push('/login');
         }
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token ;
-        axios.get(ME_URL).then(response => {
+        axios.get(AUTH_URL).then(response => {
             if (response.data.code === 0) {
                 this.setState({ currentUser: response.data.data.systemUsername });
             } else {
                 this.props.history.push('/login');
             }
+        }).catch(function (error) {
+            console.log(error);
         })
     }
 
