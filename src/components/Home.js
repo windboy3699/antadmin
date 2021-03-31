@@ -10,6 +10,8 @@ import {
     MailOutlined,
     AppstoreOutlined,
     SettingOutlined,
+    DoubleRightOutlined,
+    FolderOpenOutlined,
 } from '@ant-design/icons';
 import NotFound from "./NotFound";
 import List from './List';
@@ -24,6 +26,7 @@ class Home extends React.Component {
     state = {
         collapsed: false,
         currentUser: '',
+        sideMenus: [],
     };
 
     onCollapse = collapsed => {
@@ -40,6 +43,7 @@ class Home extends React.Component {
         axios.get(CHECK_LOGIN_URL).then(response => {
             if (response.data.code === 0) {
                 this.setState({ currentUser: response.data.data.username });
+                this.setState({sideMenus: response.data.data.sideMenus});
             } else {
                 this.props.history.push('/login');
             }
@@ -60,43 +64,38 @@ class Home extends React.Component {
 
     render() {
         const { collapsed } = this.state;
+
         return (
             <Layout style={{ minHeight: '100vh' }}>
                 <Sider collapsible collapsed={collapsed} onCollapse={this.onCollapse}>
                     <div className="logo">AntAdmin</div>
                     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            Option 1
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<DesktopOutlined />}>
-                            Option 2
-                        </Menu.Item>
-                        <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                            <Menu.Item key="3">Tom</Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                        </SubMenu>
-                        <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined />}>
-                            Files
-                        </Menu.Item>
+                        {this.state.sideMenus && this.state.sideMenus.map(item =>
+                            item.children ? (
+                                <SubMenu key={item.id} icon={<FolderOpenOutlined />} title={item.name}>
+                                    {item.children && item.children.map(child => (
+                                        <Menu.Item key={child.id}>
+                                            <Link to={child.link}>{child.name}</Link>
+                                        </Menu.Item>
+                                    ))}
+                                </SubMenu>
+                            ) : (
+                                <Menu.Item key={item.id} icon={<FolderOpenOutlined />}>
+                                    <Link to={item.link}>{item.name}</Link>
+                                </Menu.Item>
+                            )
+                        )}
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
                     <Header className="site-layout-background" style={{ padding: 0 }}>
                         <div className="header-wrap">
                             {/*<Menu onClick={this.handleClick} selectedKeys={[this.props.history.location.pathname]} mode="horizontal">
-                                <Menu.Item key="/login" icon={<MailOutlined />}>
-                                    <Link to="/login">Navigation One</Link>
-                                </Menu.Item>
                                 <Menu.Item key="/list" icon={<AppstoreOutlined />}>
-                                    <Link to="/list">Navigation Two</Link>
+                                    <Link to="/list">Navigation One</Link>
                                 </Menu.Item>
                                 <Menu.Item key="/edit" icon={<SettingOutlined />}>
-                                    <Link to="/edit">Navigation Three</Link>
+                                    <Link to="/edit">Navigation Two</Link>
                                 </Menu.Item>
                             </Menu>*/}
                             <div className={"header-right"}>
